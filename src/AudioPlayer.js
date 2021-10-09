@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import AudioControls from "./AudioControl";
+import AudioControls from "./AudioControls";
 import './style.css';
 import Backdrop from "./Backdrop";
 
@@ -19,24 +19,25 @@ function AudioPlayer({tracks})
 
     const {duration} = audioRef.current;
 
-    const currentPercentage = duration? `${(trackProgress/duration)*100}%`:"0%";
-
-    const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
+  const currentPercentage = duration
+    ? `${(trackProgress / duration) * 100}%`
+    : "0%";
+  const trackStyling = `
+    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+  `;
 
     const startTimer = () => {
         //clear any timers already Running
         clearInterval(intervalRef.current);
 
-        intervalRef.current = setInterval(()=>{
-            if(audioRef.current.ended)
-            {
-                toNextTrack();
-            }else
-            {
-                setTrackProgress(audioRef.current.currentTime);
-            }
-        },[1000]);
-    };
+    intervalRef.current = setInterval(() => {
+      if (audioRef.current.ended) {
+        toNextTrack();
+      } else {
+        setTrackProgress(audioRef.current.currentTime);
+      }
+    }, [1000]);
+  };
 
     const onScrub = (value) => {
         //clear any timers already Running
@@ -106,7 +107,7 @@ function AudioPlayer({tracks})
     
     
     return (
-        <div className="audio-plaer">
+        <div className="audio-player">
             <div className="track-info">
                 <img 
                 className="artwork" 
