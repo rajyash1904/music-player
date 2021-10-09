@@ -5,13 +5,13 @@ import { ReactComponent as Next } from "./assets/next.svg";
 import { ReactComponent as Prev } from "./assets/prev.svg";
 
 function AudioControls({
-    isPlaying,
-    onPlayPauseClick,
-    onPrevClick,
-    onNextClick
+  isPlaying,
+  onPlayPauseClick,
+  onPrevClick,
+  onNextClick
 })
 {
-    return(
+  return (
     <div className="audio-controls">
     <button
       type="button"
